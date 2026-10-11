@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Loup-Garou V7</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <!-- MAINTENANCE PLEIN ÉCRAN -->
+  <section id="maintenanceScreen" class="maintenance-screen hidden" aria-live="polite">
+    <div class="maintenance-content">
+      <div class="maintenance-icon">🛠️</div>
+      <h1>MAINTENANCE EN COURS</h1>
+      <p>Le jeu est temporairement inaccessible.</p>
+      <div id="maintenanceTimer" class="maintenance-timer">0 min 0 seconde</div>
+      <p class="maintenance-small">Merci de patienter pendant la maintenance.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================
+       ÉCRAN DE CONNEXION
+  ====================================== -->
+
+  <section id="authScreen" class="screen">
+
+    <div class="auth-box">
+
+      <h1>🐺 Loup-Garou V7</h1>
+
+      <p class="subtitle">
+        Entre dans le village...
+      </p>
+
+      <div class="auth-tabs">
+
+        <button
+          id="loginTab"
+          type="button"
+          class="active"
+        >
+          Connexion
+        </button>
+
+        <button
+          id="registerTab"
+          type="button"
+        >
+          Inscription
+        </button>
+
+      </div>
+
+
+      <!-- CONNEXION -->
+
+      <form id="loginForm">
+
+        <input
+          id="loginPseudo"
+          type="text"
+          placeholder="Pseudo"
+          autocomplete="username"
+          required
+        >
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Mot de passe"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          type="submit"
+          class="main-button"
+        >
+          🔐 Se connecter
+        </button>
+
+      </form>
+
+
+      <!-- INSCRIPTION -->
+
+      <form
+        id="registerForm"
+        class="hidden"
+      >
+
+        <input
+          id="registerPseudo"
+          type="text"
+          placeholder="Choisis un pseudo"
+          maxlength="20"
+          required
+        >
+
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="Adresse e-mail"
+          required
+        >
+
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Mot de passe"
+          autocomplete="new-password"
+          required
+        >
+
+        <button
+          type="submit"
+          class="main-button"
+        >
+          🐺 Créer mon compte
+        </button>
+
+      </form>
+
+
+      <div class="auth-help-row">
+        <button
+          id="forgotPasswordButton"
+          type="button"
+          class="link-button"
+        >
+          Mot de passe oublié ?
+        </button>
+        <button
+          id="authHelpButton"
+          type="button"
+          class="link-button"
+        >
+          🆘 Aide
+        </button>
+      </div>
+
+      <p id="authMessage"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       AIDE / ASSISTANT DE RÉCUPÉRATION
+  ====================================== -->
+
+  <section
+    id="authHelpScreen"
+    class="screen hidden"
+  >
+    <div class="auth-box">
+      <h2>🤖 Assistant d’aide</h2>
+      <div id="authHelpMessages" class="auth-help-messages">
+        <div class="notification-card">
+          <strong>🤖 Assistant</strong>
+          <p>Bonjour ! Si tu n’arrives plus à te connecter à ton compte, je peux t’aider à demander une récupération.</p>
+          <p>Entre ton identifiant unique <strong>LG-...</strong>. Si le compte appartient au créateur, la récupération est automatiquement refusée.</p>
+        </div>
+      </div>
+      <input id="authHelpIdentifier" type="text" placeholder="Ton identifiant (ex. LG-...)" autocomplete="off">
+      <button id="authHelpRecoverButton" type="button" class="main-button">🔐 Récupérer mon compte</button>
+      <button id="authHelpBackButton" type="button" class="secondary-button">← Retour à la connexion</button>
+      <p id="authHelpMessage"></p>
+    </div>
+  </section>
+
+  <!-- =====================================
+       MOT DE PASSE OUBLIÉ
+  ====================================== -->
+
+  <section
+    id="forgotScreen"
+    class="screen hidden"
+  >
+
+    <div class="auth-box">
+
+      <h2>🆘 Aide / récupération du compte</h2>
+      <p>Entre ton identifiant unique affiché dans ton compte. Si l’identifiant est valide, la récupération est automatique. Le compte du créateur ne peut pas être récupéré avec cette fonction.</p>
+
+      <input
+        id="forgotPseudo"
+        type="text"
+        placeholder="Identifiant du compte (ex. LG-...)"
+      >
+
+      <button
+        id="sendResetButton"
+        type="button"
+        class="main-button"
+      >
+        Envoyer
+      </button>
+
+      <button
+        id="backToLoginButton"
+        type="button"
+        class="secondary-button"
+      >
+        ← Retour
+      </button>
+
+      <p id="forgotMessage"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       MENU PRINCIPAL
+  ====================================== -->
+
+  <section
+    id="menuScreen"
+    class="screen hidden"
+  >
+
+    <header class="top-bar">
+
+      <div class="profile">
+
+        <div
+          id="profileIcon"
+          class="profile-icon"
+        >
+          🐺
+        </div>
+
+        <div>
+
+          <strong id="playerName">
+            Joueur
+          </strong>
+
+          <p id="playerTitle">
+            Nouveau Villageois
+          </p>
+          <p id="playerGameRole" class="player-game-role hidden"></p>
+
+        </div>
+
+      </div>
+
+
+      <div class="player-stats">
+
+        <span>
+          ⭐ Niveau
+          <b id="playerLevel">1</b>
+        </span>
+
+        <span>
+          ✨ XP
+          <b id="playerXp">0</b>
+        </span>
+
+        <span class="account-identifier" title="Identifiant unique de ton compte">🆔 <b id="playerIdentifier">LG-...</b></span>
+
+        <span class="coin-stat">
+          <span class="coin-icon" aria-label="Pièces"></span>
+          <b id="playerCoins">0</b>
+        </span>
+
+        <span>
+          🏆
+          <b id="playerTrophies">0</b>
+        </span>
+
+        <span class="candy-stat hidden" title="Bonbons Halloween">
+          🍬
+          <b id="playerCandy">0</b>
+        </span>
+
+      </div>
+      <div id="activeBoosts" class="active-boosts hidden" aria-live="polite"></div>
+      <div id="activePersonalEvents" class="active-boosts hidden" aria-live="polite"></div>
+      <div id="globalBoostBanner" class="global-boost-banner hidden" aria-live="polite"></div>
+
+    </header>
+
+    <!-- ANNONCE -->
+
+    <div
+      id="announcementBox"
+      class="announcement-box"
+    ></div>
+
+
+    <!-- MENU -->
+
+    <main class="menu-grid">
+
+      <button
+        id="playButton"
+        class="menu-button"
+        type="button"
+      >
+        🎮
+        <span>Jouer</span>
+      </button>
+
+
+      <button
+        id="classesButton"
+        class="menu-button"
+        type="button"
+      >
+        🐺
+        <span>Classes</span>
+      </button>
+
+
+      <button
+        id="questsButton"
+        class="menu-button"
+        type="button"
+      >
+        📜
+        <span>Quêtes</span>
+      </button>
+
+
+      <button
+        id="friendsButton"
+        class="menu-button"
+        type="button"
+      >
+        👥
+        <span>Amis</span>
+      </button>
+
+
+      <button id="friendChatButton" class="menu-button" type="button">
+        💬
+        <span>Chat entre amis</span>
+      </button>
+
+
+      <button
+        id="commentsButton"
+        class="menu-button"
+        type="button"
+      >
+        💬
+        <span>Commentaires</span>
+      </button>
+
+
+      <button
+        id="rankingButton"
+        class="menu-button"
+        type="button"
+      >
+        🏆
+        <span>Classement</span>
+      </button>
+
+
+      <button
+        id="settingsButton"
+        class="menu-button"
+        type="button"
+      >
+        ⚙️
+        <span>Paramètres</span>
+      </button>
+
+
+      <button
+        id="shopButton"
+        class="menu-button"
+        type="button"
+      >
+        🛒
+        <span>Boutique</span>
+      </button>
+
+      <button id="promoCodeMenuButton" class="menu-button" type="button">🎟️<span>Code</span></button>
+      <button id="updatesButton" class="menu-button" type="button">📝<span>Mises à jour</span></button>
+      <button id="halloweenChallengeButton" class="menu-button hidden" type="button">🎃<span>Défi Halloween</span></button>
+
+
+      <button
+        id="bloodMoonButton"
+        class="menu-button hidden"
+        type="button"
+      >
+        🌕
+        <span>Lune de Sang</span>
+      </button>
+
+
+      <button
+        id="adminButton"
+        class="menu-button hidden"
+        type="button"
+      >
+        👑
+        <span>Administration</span>
+      </button>
+
+    </main>
+
+
+    <!-- NOTIFICATIONS -->
+
+    <div id="notifications"></div>
+
+
+    <button
+      id="logoutButton"
+      type="button"
+      class="logout-button"
+    >
+      🚪 Déconnexion
+    </button>
+
+  </section>
+
+
+  <!-- =====================================
+       CONTENU DES PAGES
+  ====================================== -->
+
+  <main id="pagesContainer">
+
+
+    <!-- ===================================
+         BOUTON RETOUR
+    ==================================== -->
+
+    <button
+      id="backButton"
+      type="button"
+      class="back-button hidden"
+    >
+      ← Retour
+    </button>
+
+
+    <!-- ===================================
+         SALON
+    ==================================== -->
+
+    <section
+      id="gameLobby"
+      class="page hidden"
+    >
+
+      <h2>🎮 Salon de jeu</h2>
+
+      <div class="lobby-actions">
+
+        <button
+          id="createRoomButton"
+          type="button"
+          class="main-button"
+        >
+          ➕ Créer une partie
+        </button>
+
+      </div>
+
+
+      <div class="join-room">
+
+        <input
+          id="joinRoomCode"
+          type="text"
+          placeholder="Code du salon"
+          maxlength="10"
+        >
+
+        <button
+          id="joinRoomButton"
+          type="button"
+          class="secondary-button"
+        >
+          🚪 Rejoindre
+        </button>
+
+      </div>
+
+
+      <div
+        id="roomsList"
+        class="rooms-list"
+      >
+        Chargement des parties...
+      </div>
+
+
+      <!-- BOUTON DE LANCEMENT -->
+
+      <button
+        id="startGameButton"
+        type="button"
+        class="main-button hidden"
+      >
+        🐺 Lancer la partie avec d'autres joueurs
+      </button>
+
+      <button
+        id="startGameWithBotsButton"
+        type="button"
+        class="secondary-button hidden"
+      >
+        🤖 Lancer la partie avec bots
+      </button>
+
+      <label class="ranked-toggle">
+        <input id="rankedModeToggle" type="checkbox">
+        🏆 Mode classé
+      </label>
+
+      <div id="roomFriends" class="room-friends"></div>
+
+    </section>
+
+
+    <!-- ===================================
+         CLASSES
+    ==================================== -->
+
+    <section
+      id="classesPage"
+      class="page hidden"
+    >
+
+      <h2>🐺 Classes</h2>
+
+      <p>
+        Achète et équipe tes classes.
+      </p>
+
+      <div
+        id="classesList"
+        class="cards-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ===================================
+         QUÊTES
+    ==================================== -->
+
+    <section
+      id="questsPage"
+      class="page hidden"
+    >
+
+      <h2>📜 Quêtes</h2>
+
+      <div
+        id="questsList"
+        class="cards-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ===================================
+         AMIS
+    ==================================== -->
+
+    <section
+      id="friendsPage"
+      class="page hidden"
+    >
+
+      <h2>👥 Amis</h2>
+
+      <div class="friend-search">
+
+        <input
+          id="friendSearch"
+          type="text"
+          placeholder="Rechercher un joueur"
+        >
+
+        <button
+          id="searchFriendButton"
+          type="button"
+          class="main-button"
+        >
+          🔎 Rechercher
+        </button>
+
+      </div>
+
+
+      <div
+        id="friendResult"
+        class="cards-list"
+      ></div>
+
+
+      <div id="friendRequestsList" class="cards-list"></div>
+
+      <div
+        id="friendsList"
+        class="cards-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ===================================
+         CHAT ENTRE AMIS
+    ==================================== -->
+
+    <section id="friendChatPage" class="page hidden">
+      <h2>💬 Chat entre amis</h2>
+      <p class="muted">Choisis un ami avec qui discuter.</p>
+      <div id="friendChatFriendsList" class="cards-list"></div>
+      <div id="friendChatArea" class="cards-list"></div>
+    </section>
+
+
+    <!-- ===================================
+         COMMENTAIRES
+    ==================================== -->
+
+    <section
+      id="commentsPage"
+      class="page hidden"
+    >
+      <h2>💬 Commentaires</h2>
+      <p class="muted">Discute avec les autres joueurs, réponds aux commentaires et mets 👍.</p>
+      <div class="comment-compose">
+        <textarea id="commentInput" rows="3" maxlength="500" placeholder="Écris un commentaire..."></textarea>
+        <button id="commentSendButton" type="button" class="main-button">💬 Publier</button>
+        <p id="commentMessage"></p>
+      </div>
+      <div id="commentsList" class="comments-list"></div>
+    </section>
+
+
+    <!-- ===================================
+         CLASSEMENT
+    ==================================== -->
+
+    <section
+      id="rankingPage"
+      class="page hidden"
+    >
+
+      <h2>🏆 Classement</h2>
+
+      <div
+        id="rankingList"
+        class="cards-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ===================================
+         PARAMÈTRES
+    ==================================== -->
+
+    <section
+      id="settingsPage"
+      class="page hidden"
+    >
+
+      <h2>⚙️ Paramètres</h2>
+
+
+      <div class="settings-card">
+
+        <h3>📧 Modifier l'e-mail</h3>
+
+        <input
+          id="newEmail"
+          type="email"
+          placeholder="Nouvel e-mail"
+        >
+
+        <input
+          id="emailPassword"
+          type="password"
+          placeholder="Mot de passe actuel"
+        >
+
+        <button
+          id="changeEmailButton"
+          type="button"
+          class="main-button"
+        >
+          Modifier l'e-mail
+        </button>
+
+      </div>
+
+
+      <div class="settings-card">
+        <h3>💬 Chat entre amis</h3>
+        <label class="switch-row">
+          <input id="chatEnabledToggle" type="checkbox" checked>
+          <span>Autoriser le chat</span>
+        </label>
+        <p>Une demande doit être acceptée avant de discuter.</p>
+      </div>
+
+
+      <div class="settings-card danger">
+
+        <h3>⚠️ Supprimer le compte</h3>
+
+        <input
+          id="deletePassword"
+          type="password"
+          placeholder="Mot de passe"
+        >
+
+        <button
+          id="deleteAccountButton"
+          type="button"
+          class="danger-button"
+        >
+          Supprimer définitivement
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         BOUTIQUE
+    ==================================== -->
+
+    <section
+      id="shopPage"
+      class="page hidden"
+    >
+
+      <h2>🛒 Boutique</h2>
+
+      <div
+        id="shopList"
+        class="cards-list"
+      ></div>
+
+      <div class="promo-redeem-card">
+        <h3>🎟️ Code cadeau</h3>
+        <p>Entre un code pour récupérer sa récompense. Chaque code ne peut être utilisé qu'une seule fois par compte.</p>
+        <div class="promo-redeem-row">
+          <input id="promoCodeInput" type="text" maxlength="32" placeholder="Entre ton code">
+          <button id="promoCodeRedeemButton" type="button" class="main-button">🎁 Utiliser</button>
+        </div>
+        <p id="promoCodeMessage"></p>
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         LUNE DE SANG
+    ==================================== -->
+
+    <section id="promoCodePage" class="page hidden">
+      <h2>🎟️ Code cadeau</h2>
+      <p>Entre un code reçu pour récupérer sa récompense.</p>
+      <div class="promo-redeem-card"><div class="promo-redeem-row"><input id="promoCodeInputMenu" type="text" maxlength="32" placeholder="Entre ton code"><button id="promoCodeRedeemButtonMenu" type="button" class="main-button">🎁 Utiliser</button></div><p id="promoCodeMessageMenu"></p></div>
+    </section>
+
+    <section id="updatesPage" class="page hidden">
+      <h2>📝 Mises à jour</h2>
+      <div id="updatesList" class="cards-list">Chargement...</div>
+    </section>
+
+    <section id="halloweenChallengePage" class="page hidden">
+      <h2>🎃 Grand défi Halloween</h2>
+      <p>Toutes les parties terminées pendant le défi s'additionnent pour toute la communauté.</p>
+      <div class="halloween-challenge-card"><div class="challenge-gauge"><div id="halloweenChallengeFill" class="challenge-gauge-fill"></div></div><strong id="halloweenChallengeText">0 / 100 parties</strong><p id="halloweenChallengeReward">À 100 parties : 200 pièces pour tout le monde.</p></div>
+    </section>
+
+    <section
+      id="bloodMoonPage"
+      class="page hidden"
+    >
+
+      <h2>🌕 Lune de Sang</h2>
+
+      <div
+        id="bloodMoonContent"
+        class="blood-moon-content"
+      >
+        Chargement...
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         ADMINISTRATION
+    ==================================== -->
+
+    <section
+      id="adminPage"
+      class="page hidden"
+    >
+
+      <h2>👑 Administration</h2>
+
+
+      <!-- RECHERCHE JOUEUR -->
+
+      <div class="admin-card admin-dashboard-card">
+
+        <h3>📊 Tableau de bord administrateur</h3>
+        <div id="adminDashboardStats" class="admin-dashboard-stats"></div>
+        <p class="admin-help">Les actions administrateur sont appliquées directement au serveur et sauvegardées.</p>
+
+      </div>
+
+      <div class="admin-card full-admin-only admin-maintenance-card">
+        <h3>🛠️ Maintenance du jeu</h3>
+        <p>Quand la maintenance est active, seul <strong>creator2026</strong> peut continuer à utiliser le jeu.</p>
+        <div class="admin-maintenance-controls">
+          <input id="adminMaintenanceMinutes" type="number" min="0.01" max="10080" step="0.01" value="30" placeholder="Durée en minutes">
+          <small>Tu peux mettre moins d'une minute (ex. 0,5 = 30 secondes).</small>
+          <button id="adminMaintenanceStart" type="button" class="main-button">🛠️ Lancer la maintenance</button>
+          <button id="adminMaintenanceStop" type="button" class="danger-button">⛔ Arrêter la maintenance</button>
+        </div>
+        <p id="adminMaintenanceStatus">Aucune maintenance active.</p>
+        <p id="adminMaintenanceMessage"></p>
+      </div>
+
+      <div class="admin-card full-admin-only">
+        <h3>🎟️ Réductions des classes</h3>
+        <p>Réduction temporaire pendant 10 minutes. Elle peut être utilisée en même temps qu'un multiplicateur.</p>
+        <div class="admin-boost-buttons">
+          <button type="button" class="secondary-button admin-discount-btn" data-pct="10">-10%</button>
+          <button type="button" class="secondary-button admin-discount-btn" data-pct="25">-25%</button>
+          <button type="button" class="secondary-button admin-discount-btn" data-pct="50">-50%</button>
+          <button type="button" class="secondary-button admin-discount-btn" data-pct="75">-75%</button>
+          <button type="button" class="danger-button admin-discount-btn" data-pct="0">OFF</button>
+        </div>
+        <small id="adminClassDiscountStatus">Aucune réduction active</small>
+        <p id="adminClassDiscountMessage"></p>
+      </div>
+
+      <div class="admin-card">
+
+        <h3>🔎 Rechercher un joueur</h3>
+
+        <input
+          id="adminPlayerSearch"
+          type="text"
+          placeholder="Pseudo ou identifiant (ex. LG-...)"
+        >
+
+        <button
+          id="adminSearchButton"
+          type="button"
+          class="main-button"
+        >
+          Rechercher
+        </button>
+
+        <div id="adminPlayerResult"></div>
+        <p id="adminRecoveryMessage"></p>
+
+      </div>
+
+      <div class="admin-card">
+        <h3>➕ Créer un compte</h3>
+        <p class="admin-help">Disponible pour l’administrateur principal et le panel admin réduit.</p>
+        <div class="admin-create-account-grid">
+          <input id="adminCreatePseudo" type="text" maxlength="20" placeholder="Pseudo">
+          <input id="adminCreateEmail" type="email" placeholder="E-mail">
+          <input id="adminCreatePassword" type="password" minlength="4" placeholder="Mot de passe">
+        </div>
+        <button id="adminCreateAccountButton" type="button" class="main-button">➕ Créer le compte</button>
+        <p id="adminCreateAccountMessage"></p>
+      </div>
+
+      <div class="admin-card full-admin-only">
+        <h3>🆘 Récupérations de comptes</h3>
+        <div id="adminRecoveryRequests" class="cards-list"></div>
+      </div>
+
+
+      <!-- RÉCOMPENSE -->
+
+      <div class="admin-card">
+
+        <h3>🎁 Donner une récompense</h3>
+
+        <label for="adminRewardType">
+          Type :
+        </label>
+
+        <select id="adminRewardType">
+
+          <option value="coins">
+            🪙 Pièces
+          </option>
+
+          <option value="xp">
+            ✨ XP
+          </option>
+
+          <option value="trophies">
+            🏆 Trophées
+          </option>
+
+          <option value="halloweenCandy">
+            🍬 Bonbons Halloween
+          </option>
+
+          <option value="level">
+            ⭐ Niveau
+          </option>
+
+          <option value="class">
+            🐺 Classe
+          </option>
+
+        </select>
+
+
+        <div id="adminAmountContainer">
+
+          <input
+            id="adminAmountInput"
+            type="number"
+            min="1"
+            placeholder="Quantité"
+          >
+
+        </div>
+
+
+        <div
+          id="adminClassContainer"
+          class="hidden"
+        >
+
+          <select id="adminClassSelect">
+
+            <option value="">
+              Choisir une classe
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <button
+          id="adminGiveButton"
+          type="button"
+          class="main-button"
+        >
+          🎁 Donner
+        </button>
+
+        <p id="adminMessage"></p>
+
+      </div>
+
+
+      <div class="admin-card full-admin-only admin-personal-event-card">
+        <h3>⚡ Donner un événement à un joueur</h3>
+        <p>Choisis un joueur recherché ci-dessus et offre-lui un événement pendant <strong>10 minutes</strong>.</p>
+        <select id="adminPersonalEventSelect">
+          <option value="">Choisir un événement</option>
+          <option value="halloween">🎃 Halloween</option>
+          <option value="bloodmoon">🌕 Lune de Sang</option>
+          <option value="double_coins">🪙 x2 Pièces</option>
+          <option value="double_xp">✨ x2 XP</option>
+          <option value="double_trophies">🏆 x2 Trophées</option>
+          <option value="discount_10">🎟️ Réduction classes -10%</option>
+          <option value="discount_25">🎟️ Réduction classes -25%</option>
+          <option value="discount_50">🎟️ Réduction classes -50%</option>
+          <option value="discount_75">🎟️ Réduction classes -75%</option>
+        </select>
+        <button id="adminGivePersonalEventButton" type="button" class="main-button">⚡ Donner l'événement pendant 10 min</button>
+        <p id="adminPersonalEventMessage"></p>
+      </div>
+
+
+      <div class="admin-card full-admin-only admin-code-card">
+        <h3>🎟️ Codes de récompense</h3>
+        <p>Crée des codes utilisables une seule fois par compte. Mets <strong>0</strong> en limite pour un code illimité.</p>
+        <div class="admin-code-grid">
+          <input id="adminPromoCode" type="text" maxlength="32" placeholder="Code, ex. HALLOWEEN2026">
+          <select id="adminPromoRewardType">
+            <option value="coins">🪙 Pièces</option>
+            <option value="xp">✨ XP</option>
+            <option value="trophies">🏆 Trophées</option>
+            <option value="halloweenCandy">🍬 Bonbons Halloween</option>
+            <option value="class">🐺 Classe</option>
+            <option value="title">🏷️ Titre</option>
+          </select>
+          <input id="adminPromoAmount" type="number" min="1" placeholder="Quantité">
+          <select id="adminPromoClass" class="hidden"><option value="">Choisir une classe</option></select>
+          <input id="adminPromoTitle" class="hidden" type="text" maxlength="80" placeholder="Titre à donner">
+          <input id="adminPromoMaxUses" type="number" min="0" placeholder="Limite d'utilisations (0 = infini)">
+        </div>
+        <button id="adminCreatePromoButton" type="button" class="main-button">➕ Créer le code</button>
+        <p id="adminPromoMessage"></p>
+        <div id="adminPromoCodesList" class="admin-promo-list"></div>
+      </div>
+
+      <div class="admin-card full-admin-only">
+        <h3>🌐 Récompenser tous les joueurs</h3>
+        <input id="adminAllCoins" type="number" min="0" placeholder="Pièces">
+        <input id="adminAllXp" type="number" min="0" placeholder="XP">
+        <input id="adminAllTrophies" type="number" placeholder="Trophées">
+        <select id="adminAllClassSelect"><option value="">Aucune classe</option></select>
+        <label class="switch-row"><input id="adminOnlineOnly" type="checkbox"> Seulement les joueurs en ligne</label>
+        <button id="adminRewardAllButton" type="button" class="main-button">🎁 Envoyer à tous</button>
+        <p id="adminAllMessage"></p>
+      </div>
+
+      <div class="admin-card full-admin-only admin-boost-card">
+        <h3>⚡ Multiplicateurs globaux</h3>
+        <p>Active un bonus pour tous les joueurs. Durée par défaut : 10 minutes.</p>
+        <div class="admin-boost-grid">
+          <div>
+            <strong>🪙 Pièces</strong>
+            <div class="admin-boost-buttons" data-boost-type="coins">
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="2">x2</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="4">x4</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="5">x5</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="10">x10</button>
+              <button type="button" class="danger-button admin-boost-btn" data-mult="1">OFF</button>
+            </div>
+            <small id="adminBoostCoinsStatus">Aucun bonus</small>
+          </div>
+          <div>
+            <strong>✨ XP</strong>
+            <div class="admin-boost-buttons" data-boost-type="xp">
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="2">x2</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="4">x4</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="5">x5</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="10">x10</button>
+              <button type="button" class="danger-button admin-boost-btn" data-mult="1">OFF</button>
+            </div>
+            <small id="adminBoostXpStatus">Aucun bonus</small>
+          </div>
+          <div>
+            <strong>🏆 Trophées</strong>
+            <div class="admin-boost-buttons" data-boost-type="trophies">
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="2">x2</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="4">x4</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="5">x5</button>
+              <button type="button" class="secondary-button admin-boost-btn" data-mult="10">x10</button>
+              <button type="button" class="danger-button admin-boost-btn" data-mult="1">OFF</button>
+            </div>
+            <small id="adminBoostTrophiesStatus">Aucun bonus</small>
+          </div>
+        </div>
+        <p id="adminBoostMessage"></p>
+      </div>
+
+      <div class="admin-card full-admin-only admin-halloween-card">
+        <h3>🎃 Événement Halloween</h3>
+        <p id="adminHalloweenStatus">🎃 Événement désactivé.</p>
+        <div class="admin-halloween-buttons">
+          <button type="button" class="secondary-button admin-halloween-start" data-week="1">🎃 Semaine 1</button>
+          <button type="button" class="secondary-button admin-halloween-start" data-week="2">👻 Semaine 2</button>
+          <button type="button" class="secondary-button admin-halloween-start" data-week="3">🐺 Semaine 3</button>
+          <button type="button" class="secondary-button admin-halloween-start" data-week="4">🌕 Semaine 4</button>
+          <button type="button" class="danger-button" id="adminHalloweenStop">🛑 Arrêter l’événement</button>
+        </div>
+        <p class="admin-help">Chaque semaine dure exactement 7 jours. Tu peux arrêter l’événement à tout moment.</p>
+        <p id="adminHalloweenMessage"></p>
+      </div>
+
+      <div class="admin-card full-admin-only">
+        <h3>🌕 Événement Lune de Sang</h3>
+        <p>Lance immédiatement l'événement pour 20 minutes.</p>
+        <button id="adminBloodMoonButton" type="button" class="main-button">🌕 Activer pendant 20 minutes</button>
+        <p id="adminBloodMoonMessage"></p>
+      </div>
+
+      <div class="admin-card">
+        <h3>👥 Joueurs et classes</h3>
+        <div id="adminUsersList" class="cards-list"></div>
+        <div id="adminClassesList" class="cards-list"></div>
+      </div>
+
+      <div class="admin-card full-admin-only">
+        <h3>📝 Historique des mises à jour</h3>
+        <p>Ajoute ou modifie manuellement les notes de version visibles par les joueurs.</p>
+        <input id="adminUpdateId" type="hidden">
+        <div class="admin-update-grid">
+          <input id="adminUpdateVersion" type="text" placeholder="Version (ex. 0.31)">
+          <input id="adminUpdateDate" type="date">
+        </div>
+        <textarea id="adminUpdateFeatures" rows="6" placeholder="Nouvelles fonctionnalités, correctifs... Les retours à la ligne sont conservés."></textarea>
+        <button id="adminSaveUpdateButton" type="button" class="main-button">💾 Ajouter la mise à jour</button>
+        <button id="adminCancelUpdateButton" type="button" class="secondary-button hidden">Annuler la modification</button>
+        <p id="adminUpdateMessage"></p>
+        <div id="adminUpdatesList" class="cards-list"></div>
+      </div>
+
+      <!-- ANNONCE -->
+
+      <div class="admin-card full-admin-only">
+
+        <h3>📢 Annonce du menu</h3>
+
+        <textarea
+          id="announcementInput"
+          placeholder="Écris ici l'annonce..."
+          rows="5"
+        ></textarea>
+
+        <button
+          id="saveAnnouncementButton"
+          type="button"
+          class="main-button"
+        >
+          💾 Enregistrer l'annonce
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================
+       CHARGEMENT PARTIE
+  ====================================== -->
+
+  <section
+    id="gameLoadingScreen"
+    class="loading-screen hidden"
+  >
+
+    <div class="loading-box">
+
+      <div class="loading-icon">
+        🌕
+      </div>
+
+      <h2 id="gameLoadingText">
+        Chargement...
+      </h2>
+
+      <div class="loading-spinner"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- 🎃 MUSIQUE HALLOWEEN — activée uniquement pendant l’événement -->
+  <div id="halloweenMusicBox" class="halloween-music-box hidden" aria-live="polite">
+    <button type="button" id="halloweenMusicToggle" class="secondary-button">🎃 Musique Halloween : activée</button>
+    <audio id="halloweenMusic" loop preload="auto">
+      <source src="/halloween-theme.wav" type="audio/wav">
+    </audio>
+  </div>
+
+  <!-- =====================================
+       TIMER LUNE DE SANG
+  ====================================== -->
+
+  <div
+    id="bloodMoonTimer"
+    class="blood-moon-timer hidden"
+  ></div>
+
+
+  <!-- =====================================
+       SOCKET.IO
+       DOIT ÊTRE AVANT SCRIPT.JS
+  ====================================== -->
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- =====================================
+       TON JAVASCRIPT
+  ====================================== -->
+
+  <script src="/script.js?v=0313"></script>
+
+</body>
+</html>

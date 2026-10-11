@@ -1,0 +1,1350 @@
+/* =========================================================
+   LOUP-GAROU V7
+   STYLE PRINCIPAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(2,5,9,.48),rgba(2,5,9,.68)),
+    url('/halloween-background.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #05080c;
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   CLASSES GÉNÉRALES
+========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.page {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 35px 0 60px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CONNEXION / INSCRIPTION
+========================================================= */
+
+#authScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.8)),
+    radial-gradient(circle at center, #3b1010, #070707 70%);
+}
+
+.auth-box {
+  width: min(460px, 100%);
+  padding: 35px;
+  border: 1px solid #5b5b5b;
+  border-radius: 18px;
+  background: rgba(20, 20, 20, 0.96);
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.75),
+    inset 0 0 35px rgba(255, 255, 255, 0.025);
+  text-align: center;
+}
+
+.auth-box h1 {
+  font-size: 38px;
+  margin-bottom: 8px;
+  color: #f1d7a1;
+  text-shadow: 0 0 20px rgba(255, 200, 100, 0.18);
+}
+
+.auth-box h2 {
+  color: #f1d7a1;
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 9px;
+  background: #181818;
+  color: #aaa;
+}
+
+.auth-tabs button.active {
+  background: #641919;
+  border-color: #a83b3b;
+  color: white;
+}
+
+#loginForm,
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #454545;
+  border-radius: 9px;
+  outline: none;
+  background: #0d0d0d;
+  color: white;
+}
+
+.auth-box input:focus {
+  border-color: #9e3636;
+}
+
+.link-button {
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  color: #d9a75f;
+  text-decoration: underline;
+}
+
+#authMessage,
+#forgotMessage {
+  margin-top: 15px;
+  color: #e8b26a;
+}
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+
+.main-button,
+.secondary-button,
+.danger-button,
+.logout-button,
+.back-button {
+  border-radius: 9px;
+  padding: 11px 17px;
+  border: 1px solid #555;
+  transition: 0.2s ease;
+}
+
+.main-button {
+  background: linear-gradient(135deg, #8d2222, #4e1010);
+  border-color: #b84444;
+  color: white;
+  box-shadow: 0 5px 20px rgba(130, 20, 20, 0.22);
+}
+
+.main-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ad2b2b, #661515);
+}
+
+.secondary-button {
+  background: #202020;
+  color: #eee;
+}
+
+.secondary-button:hover {
+  background: #303030;
+}
+
+.danger-button {
+  background: #641313;
+  color: white;
+  border-color: #9c3030;
+}
+
+.logout-button {
+  background: #151515;
+  color: #aaa;
+  border-color: #333;
+}
+
+.back-button {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 100;
+  background: rgba(15, 15, 15, 0.92);
+  color: white;
+}
+
+/* =========================================================
+   MENU PRINCIPAL
+========================================================= */
+
+#menuScreen {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.top-bar {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 15px 30px;
+  background: rgba(8, 8, 8, 0.94);
+  border-bottom: 1px solid #3d3d3d;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.profile-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #2a0e0e;
+  border: 1px solid #743333;
+  font-size: 28px;
+}
+
+#playerName {
+  color: #f0d39e;
+  font-size: 18px;
+}
+
+#playerTitle {
+  color: #888;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.player-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  color: #aaa;
+}
+
+.player-stats span {
+  padding: 7px 10px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #121212;
+}
+
+.player-stats b {
+  color: #f2d28e;
+}
+
+/* =========================================================
+   BARRE XP
+   CACHÉE COMME DEMANDÉ
+========================================================= */
+
+#xpBarContainer {
+  display: none !important;
+}
+
+/* =========================================================
+   ANNONCE
+========================================================= */
+
+.announcement-box {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  width: min(1050px, calc(100% - 40px));
+  min-height: 90px;
+  margin: 25px auto;
+  padding: 20px;
+  border: 1px solid #6a4b2d;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(48, 34, 20, 0.8), rgba(20, 20, 20, 0.9));
+  color: #e5d0a6;
+}
+
+.announcement-box:empty {
+  display: none;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu-grid {
+  width: min(1050px, calc(100% - 40px));
+  margin: 35px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.menu-button {
+  min-height: 115px;
+  border: 1px solid #414141;
+  border-radius: 15px;
+  background:
+    linear-gradient(145deg, #1b1b1b, #0d0d0d);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 17px;
+  transition: 0.2s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.menu-button span {
+  color: #ddd;
+}
+
+.menu-button:hover {
+  transform: translateY(-4px);
+  border-color: #843333;
+  background:
+    linear-gradient(145deg, #321414, #111111);
+  box-shadow: 0 10px 35px rgba(100, 20, 20, 0.25);
+}
+
+.menu-button:first-letter {
+  font-size: 28px;
+}
+
+/* =========================================================
+   PAGES
+========================================================= */
+
+.page h2 {
+  margin-bottom: 25px;
+  font-size: 34px;
+  color: #ead09d;
+  text-shadow: 0 0 15px rgba(220, 170, 90, 0.1);
+}
+
+.page > p {
+  color: #999;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   SALON
+========================================================= */
+
+#gameLobby {
+  min-height: calc(100vh - 80px);
+}
+
+.lobby-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.join-room {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.join-room input,
+.friend-search input,
+.admin-card input,
+.admin-card select,
+.admin-card textarea,
+.settings-card input {
+  background: #101010;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 11px 13px;
+  outline: none;
+}
+
+.join-room input {
+  width: 260px;
+}
+
+.rooms-list {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.room-card {
+  padding: 17px;
+  border: 1px solid #393939;
+  border-radius: 12px;
+  background: #141414;
+}
+
+/* =========================================================
+   CARTES
+========================================================= */
+
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 17px;
+}
+
+.card,
+.class-card,
+.quest-card,
+.friend-card,
+.ranking-card,
+.shop-card {
+  padding: 20px;
+  border-radius: 13px;
+  border: 1px solid #3d3d3d;
+  background:
+    linear-gradient(145deg, #1a1a1a, #101010);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.card h3,
+.class-card h3,
+.quest-card h3,
+.friend-card h3,
+.shop-card h3 {
+  color: #e7cb95;
+  margin-bottom: 10px;
+}
+
+.card p,
+.class-card p,
+.quest-card p,
+.friend-card p,
+.shop-card p {
+  color: #999;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   AMIS
+========================================================= */
+
+.friend-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.friend-search input {
+  width: 300px;
+}
+
+.friend-status {
+  margin: 10px 0;
+  color: #aaa;
+}
+
+/* =========================================================
+   PARAMÈTRES
+========================================================= */
+
+.settings-card {
+  max-width: 750px;
+  margin-bottom: 22px;
+  padding: 22px;
+  border-radius: 13px;
+  border: 1px solid #3d3d3d;
+  background: #121212;
+}
+
+.settings-card h3 {
+  margin-bottom: 15px;
+  color: #e4c994;
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-card.danger {
+  border-color: #662626;
+}
+
+.settings-card input {
+  max-width: 420px;
+}
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-card {
+  max-width: 900px;
+  margin-bottom: 22px;
+  padding: 23px;
+  border-radius: 14px;
+  border: 1px solid #4a3b26;
+  background:
+    linear-gradient(145deg, #1b1710, #111111);
+}
+
+.admin-card h3 {
+  color: #e7c77f;
+  margin-bottom: 17px;
+}
+
+.admin-card input,
+.admin-card select {
+  min-width: 230px;
+}
+
+.admin-card textarea {
+  width: 100%;
+  max-width: 700px;
+  min-height: 130px;
+  resize: vertical;
+}
+
+.admin-card button {
+  margin-top: 12px;
+}
+
+#adminPlayerResult {
+  margin-top: 15px;
+}
+
+#adminMessage {
+  margin-top: 12px;
+  color: #e5bf76;
+}
+
+/* =========================================================
+   LUNE DE SANG
+========================================================= */
+
+.blood-moon-content {
+  min-height: 400px;
+  padding: 30px;
+  border: 1px solid #6e2525;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(150, 20, 20, 0.28), transparent 30%),
+    linear-gradient(145deg, #1b0909, #090909);
+}
+
+.blood-moon-timer {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 200;
+  padding: 10px 15px;
+  border-radius: 9px;
+  border: 1px solid #742929;
+  background: rgba(20, 5, 5, 0.95);
+  color: #efc983;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+#notifications {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: min(380px, calc(100% - 40px));
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #60452b;
+  background: rgba(20, 20, 20, 0.97);
+  color: white;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+}
+
+.notification button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px solid #805d30;
+  border-radius: 7px;
+  background: #382716;
+  color: #f1d09a;
+}
+
+/* =========================================================
+   CHARGEMENT
+========================================================= */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle, rgba(80, 15, 15, 0.55), rgba(0, 0, 0, 0.97));
+}
+
+.loading-box {
+  text-align: center;
+}
+
+.loading-icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+  animation: pulse 1.3s infinite;
+}
+
+.loading-box h2 {
+  color: #e7cc98;
+  margin-bottom: 20px;
+}
+
+.loading-spinner {
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  border: 4px solid #333;
+  border-top-color: #a53b3b;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.1);
+    opacity: 0.65;
+  }
+}
+
+/* =========================================================
+   MODE LUNE DE SANG
+========================================================= */
+
+body.blood-moon-active {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(145, 15, 15, 0.55), transparent 45%),
+    linear-gradient(135deg, #170404, #080808 70%);
+}
+
+body.blood-moon-active .top-bar {
+  border-bottom-color: #762222;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .player-stats {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .auth-box {
+    padding: 25px 18px;
+  }
+
+  .auth-box h1 {
+    font-size: 29px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    width: calc(100% - 25px);
+  }
+
+  .page {
+    width: calc(100% - 25px);
+  }
+
+  .join-room,
+  .friend-search {
+    flex-direction: column;
+  }
+
+  .join-room input,
+  .friend-search input {
+    width: 100%;
+  }
+
+  .cards-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================================
+   REDESIGN VISUEL — STYLE INSPIRE DE LA MAQUETTE FOURNIE
+   Noir profond / cartes larges / bordures fines / accent rouge
+========================================================= */
+
+:root {
+  --ui-bg: #0b0b0b;
+  --ui-surface: #151515;
+  --ui-surface-2: #181818;
+  --ui-border: #3a3a3a;
+  --ui-border-soft: #303030;
+  --ui-text: #eeeeee;
+  --ui-muted: #9b9b9b;
+  --ui-red: #7f2525;
+  --ui-red-soft: rgba(127, 37, 37, 0.18);
+  --ui-gold: #e3c58c;
+}
+
+html {
+  background: var(--ui-bg);
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(83, 18, 18, 0.11), transparent 38%),
+    #0b0b0b;
+  color: var(--ui-text);
+  letter-spacing: 0.01em;
+}
+
+/* Barre supérieure : plus discrète pour laisser le menu respirer */
+.top-bar {
+  min-height: 72px;
+  padding: 12px 34px;
+  background: rgba(10, 10, 10, 0.96);
+  border-bottom: 1px solid #292929;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.32);
+}
+
+.profile-icon {
+  width: 48px;
+  height: 48px;
+  background: #151515;
+  border: 1px solid #404040;
+  box-shadow: inset 0 0 18px rgba(255,255,255,0.025);
+}
+
+#playerName {
+  color: #f0f0f0;
+  font-size: 16px;
+}
+
+#playerTitle {
+  color: #777;
+}
+
+.player-stats {
+  gap: 8px;
+}
+
+.player-stats span {
+  padding: 6px 10px;
+  border: 1px solid #2f2f2f;
+  border-radius: 7px;
+  background: #111;
+  color: #888;
+}
+
+.player-stats b {
+  color: #ddd;
+}
+
+/* Le menu est la pièce maîtresse */
+.menu-grid {
+  width: min(1160px, calc(100% - 48px));
+  margin: 38px auto 55px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.menu-button {
+  min-height: 145px;
+  padding: 24px;
+  border: 1px solid var(--ui-border);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #171717, #121212);
+  color: #eee;
+  gap: 13px;
+  font-size: 20px;
+  font-weight: 400;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.015);
+  transition: transform 0.18s ease, border-color 0.18s ease,
+              background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.menu-button > span:first-child,
+.menu-button::first-letter {
+  font-size: 27px;
+}
+
+.menu-button span {
+  color: #e4e4e4;
+}
+
+.menu-button:hover {
+  transform: translateY(-2px);
+  border-color: #555;
+  background: linear-gradient(145deg, #1b1b1b, #141414);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.36),
+    0 0 0 1px rgba(127, 37, 37, 0.08);
+}
+
+.menu-button:active {
+  transform: translateY(0);
+}
+
+/* Le classement reprend le léger rouge de la maquette */
+#rankingButton {
+  background:
+    linear-gradient(145deg, rgba(74, 17, 17, 0.58), rgba(24, 14, 14, 0.96));
+  border-color: #4a3030;
+}
+
+#rankingButton:hover {
+  border-color: #704040;
+  box-shadow: 0 14px 35px rgba(80, 15, 15, 0.2);
+}
+
+/* La Lune de Sang garde une identité spéciale */
+#bloodMoonButton {
+  background:
+    linear-gradient(145deg, rgba(88, 12, 12, 0.72), rgba(24, 8, 8, 0.98));
+  border-color: #6b2929;
+}
+
+#bloodMoonButton:hover {
+  border-color: #9b3b3b;
+}
+
+#adminButton {
+  background: linear-gradient(145deg, #1d1810, #121212);
+  border-color: #54462e;
+}
+
+/* Annonce : même langage visuel que les cartes */
+.announcement-box {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  width: min(1160px, calc(100% - 48px));
+  min-height: 76px;
+  margin: 24px auto 8px;
+  padding: 18px 21px;
+  border: 1px solid #3c3430;
+  border-radius: 14px;
+  background: #151515;
+  color: #cfcfcf;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+}
+
+/* Boutons généraux */
+.main-button,
+.secondary-button,
+.danger-button,
+.logout-button,
+.back-button {
+  border-radius: 9px;
+  border-color: #404040;
+  box-shadow: none;
+}
+
+.main-button {
+  background: #651d1d;
+  border-color: #8a3333;
+}
+
+.main-button:hover {
+  background: #792424;
+}
+
+.secondary-button {
+  background: #181818;
+  color: #ddd;
+}
+
+.secondary-button:hover {
+  background: #222;
+  border-color: #555;
+}
+
+.danger-button {
+  background: #5e1818;
+  border-color: #843030;
+}
+
+.logout-button {
+  margin: 0 auto 30px;
+  display: block;
+  background: #121212;
+  border-color: #303030;
+  color: #888;
+}
+
+/* Toutes les pages utilisent désormais le même style de surface */
+.page {
+  width: min(1160px, calc(100% - 48px));
+  padding: 42px 0 65px;
+}
+
+.page h2 {
+  margin-bottom: 26px;
+  color: #eee;
+  font-size: 30px;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+.page > p {
+  color: #8f8f8f;
+}
+
+.card,
+.class-card,
+.quest-card,
+.friend-card,
+.ranking-card,
+.shop-card,
+.settings-card,
+.admin-card,
+.room-card {
+  border: 1px solid #353535;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #181818, #121212);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+}
+
+.card h3,
+.class-card h3,
+.quest-card h3,
+.friend-card h3,
+.shop-card h3,
+.settings-card h3,
+.admin-card h3 {
+  color: #e2e2e2;
+}
+
+.card p,
+.class-card p,
+.quest-card p,
+.friend-card p,
+.shop-card p {
+  color: #929292;
+}
+
+/* Salon */
+#gameLobby {
+  background: transparent;
+}
+
+.room-card {
+  padding: 20px;
+}
+
+.room-card:hover {
+  border-color: #4b4b4b;
+}
+
+/* Inputs */
+.join-room input,
+.friend-search input,
+.admin-card input,
+.admin-card select,
+.admin-card textarea,
+.settings-card input {
+  background: #101010;
+  border-color: #353535;
+  color: #eee;
+}
+
+.join-room input:focus,
+.friend-search input:focus,
+.admin-card input:focus,
+.admin-card select:focus,
+.admin-card textarea:focus,
+.settings-card input:focus {
+  border-color: #6d3030;
+  box-shadow: 0 0 0 2px rgba(109,48,48,0.12);
+}
+
+/* Notifications : sobres, comme les cartes */
+.notification {
+  border-color: #3d3d3d;
+  border-radius: 13px;
+  background: rgba(20, 20, 20, 0.98);
+}
+
+.notification button {
+  background: #5e1a1a;
+  border-color: #793030;
+  color: #eee;
+}
+
+/* Authentification */
+.auth-box {
+  border-color: #3b3b3b;
+  border-radius: 18px;
+  background: #141414;
+}
+
+.auth-box h1,
+.auth-box h2 {
+  color: #eee;
+}
+
+.auth-box input {
+  background: #0d0d0d;
+  border-color: #363636;
+}
+
+.auth-tabs button {
+  background: #161616;
+  border-color: #353535;
+}
+
+.auth-tabs button.active {
+  background: #5d1919;
+  border-color: #7d2c2c;
+}
+
+/* Chargement */
+.loading-screen {
+  background:
+    radial-gradient(circle at center, rgba(72, 13, 13, 0.36), rgba(0, 0, 0, 0.98) 68%);
+}
+
+.loading-box h2 {
+  color: #e6e6e6;
+}
+
+.loading-spinner {
+  border-top-color: #8b3030;
+}
+
+/* Responsive : on conserve les grandes cartes, puis on passe en 2/1 colonne */
+@media (max-width: 900px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    padding: 12px 18px;
+  }
+
+  .menu-grid {
+    width: calc(100% - 28px);
+    margin-top: 24px;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  .menu-button {
+    min-height: 118px;
+    border-radius: 15px;
+  }
+
+  .announcement-box,
+  .page {
+    width: calc(100% - 28px);
+  }
+}
+
+/* =====================================================
+   V8 — INTERFACE SALON / QUÊTES / ÉVÉNEMENTS
+===================================================== */
+.ranked-toggle,.switch-row,.ranked-room-row{display:flex;align-items:center;gap:10px;margin:14px 0;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.025)}
+.ranked-toggle input,.switch-row input,.ranked-room-row input{accent-color:#8f1f2c}
+.room-friends{margin-top:18px;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+.room-friend,.room-player-row,.admin-user-row,.admin-class-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;margin:7px 0;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.025)}
+.room-friend small{opacity:.75}
+.quest-progress,.blood-gauge{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#090909;border-radius:999px}
+.quest-progress{height:9px;margin:12px 0}.quest-progress div{height:100%;background:linear-gradient(90deg,#6e1522,#c13a4b);border-radius:999px}
+.notification-card{padding:14px;margin:8px 0;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(25,10,12,.7)}
+.notification-card button{margin:5px 5px 0 0}
+.blood-moon-event{display:flex;align-items:stretch;gap:28px;max-width:620px;margin:auto}.blood-ladder{display:flex;flex-direction:column;justify-content:space-between;gap:18px;flex:1}.blood-rung{padding:16px;border:1px solid rgba(160,30,45,.35);border-radius:14px;background:rgba(75,10,18,.3)}.blood-rung.final{border-color:rgba(220,70,85,.65)}
+.blood-gauge{width:48px;min-height:280px;display:flex;align-items:flex-end;justify-content:center}.blood-gauge-fill{width:100%;background:linear-gradient(0deg,#64121d,#d33b4d);border-radius:999px;transition:height .4s}.blood-gauge strong{position:absolute;top:50%;transform:translateY(-50%)}
+.title-list{display:flex;flex-wrap:wrap;gap:8px}.chat-box{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px}.chat-box #chatMessages{min-height:120px;max-height:280px;overflow:auto;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}.chat-compose{display:flex;gap:8px}.chat-compose input{flex:1}.game-target{margin:5px}.game-actions{display:flex;gap:8px;flex-wrap:wrap}.game-result{border-color:rgba(190,45,60,.45)}
+@media(max-width:700px){.blood-moon-event{gap:12px}.blood-gauge{width:38px}.room-friend,.room-player-row,.admin-user-row,.admin-class-row{flex-wrap:wrap}.chat-compose{flex-direction:column}}
+body[data-lg-phase="salon"]{background:radial-gradient(circle at 50% 20%,rgba(90,15,25,.22),transparent 45%),#0b0b0b}
+body[data-lg-phase="search"]{background:radial-gradient(circle at 50% 50%,rgba(120,25,35,.35),transparent 40%),#090909}
+body[data-lg-phase="loading"]{background:radial-gradient(circle at 50% 50%,rgba(180,30,45,.28),transparent 42%),#070707}
+body.blood-moon-active[data-lg-phase="salon"]{background:radial-gradient(circle at 50% 25%,rgba(155,20,35,.35),transparent 45%),linear-gradient(135deg,#080808,#1a080b 55%,#060606)}
+body.blood-moon-active[data-lg-phase="search"]{background:radial-gradient(circle at 50% 50%,rgba(200,25,45,.48),transparent 42%),#080607}
+body.blood-moon-active[data-lg-phase="loading"]{background:radial-gradient(circle at 50% 50%,rgba(235,35,55,.4),transparent 40%),#060506}
+
+/* V9 - rôle secret du joueur */
+.player-game-role,
+.game-role-card {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid rgba(190, 40, 40, .45);
+  border-radius: 10px;
+  background: rgba(70, 8, 12, .35);
+}
+.player-game-role { font-size: .9rem; }
+
+
+/* Monnaie : vraie pièce CSS */
+.coin-icon{display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(145deg,#fff2a8,#e0a51a 55%,#9b6500);border:2px solid #f7d45a;box-shadow:inset 0 0 0 2px rgba(255,255,255,.22),0 2px 8px rgba(0,0,0,.35);vertical-align:-5px;position:relative;margin-right:5px;}
+.coin-icon::after{content:'₡';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#7a4b00;font-weight:900;font-size:13px;text-shadow:0 1px rgba(255,255,255,.35);}
+
+/* Bonus boutique : multiplicateurs temporaires de 10 minutes */
+.active-boosts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.boost-badge,.boost-active{display:inline-block;padding:4px 9px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(120,20,20,.22);font-size:.82rem}
+
+/* V12 — vraie interface de partie, lisible et centrée sur les votes */
+.game-screen{max-width:980px;margin:18px auto;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(180deg,rgba(24,24,24,.98),rgba(11,11,11,.98));box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.game-header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:18px;margin-bottom:18px}
+.game-header h2{margin:8px 0 0;font-size:clamp(1.35rem,3vw,2rem)}
+.game-header h2 small{font-size:.72em;opacity:.6;margin-left:8px}
+.game-phase-badge{display:inline-block;padding:6px 11px;border-radius:999px;font-size:.76rem;font-weight:800;letter-spacing:.08em;border:1px solid rgba(255,255,255,.12)}
+.game-phase-badge.night{background:rgba(55,50,100,.25)}.game-phase-badge.day{background:rgba(140,100,35,.2)}
+.game-vote-counter{font-weight:800;white-space:nowrap;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.game-role-card.featured{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:17px 19px;border-radius:16px;border:1px solid rgba(190,40,55,.5);background:linear-gradient(90deg,rgba(80,8,15,.45),rgba(255,255,255,.025))}
+.role-label{font-size:.7rem;letter-spacing:.12em;opacity:.65;font-weight:900}.my-role{font-size:1.25rem;font-weight:900}.teammates{font-size:.9rem;opacity:.9;margin-left:auto}
+.game-instruction{padding:13px 15px;margin-bottom:18px;border-left:3px solid #8d2531;background:rgba(255,255,255,.035);border-radius:10px;line-height:1.45}
+.game-players-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.game-player-card{position:relative;min-height:105px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:#121212;color:#eee;cursor:pointer;transition:.16s transform,.16s border-color,.16s background}
+.game-player-card:hover:not(:disabled){transform:translateY(-2px);border-color:rgba(210,55,70,.65);background:#191919}.game-player-card.selected{border-color:#d33a4d;box-shadow:0 0 0 2px rgba(211,58,77,.16);background:rgba(100,12,23,.3)}.game-player-card:disabled{opacity:.6;cursor:not-allowed}
+.player-avatar{font-size:1.7rem}.player-name{font-weight:800;word-break:break-word;text-align:center}.player-status{font-size:.63rem;opacity:.5;letter-spacing:.08em}
+.game-action-panel{margin-top:18px}.vote-panel{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:15px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.035)}.vote-panel strong{font-size:1rem}.vote-panel span{opacity:.72}.vote-panel small{width:100%;opacity:.5}.vote-panel button{margin-left:auto}
+.game-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:800px){.game-players-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.teammates{width:100%;margin-left:0}.game-header{flex-direction:column}.game-vote-counter{width:100%;box-sizing:border-box}}
+@media(max-width:430px){.game-screen{padding:14px;border-radius:18px}.game-players-grid{grid-template-columns:1fr 1fr}.game-player-card{min-height:92px}.vote-panel button{width:100%;margin-left:0}}
+
+/* V13 - discussion intégrée à la partie */
+.game-chat-panel{margin-top:18px;padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(5,5,5,.78)}
+.game-chat-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}.game-chat-head span{font-size:12px;opacity:.65}
+.game-chat-messages{height:150px;overflow:auto;padding:10px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.game-chat-line{padding:6px 4px;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}.game-chat-line:last-child{border-bottom:0}
+.game-chat-compose{display:flex;gap:8px;margin-top:10px}.game-chat-compose input{flex:1;min-width:0}
+.shop-buy:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:700px){.game-chat-compose{flex-direction:column}}
+
+/* V16 — panneau des multiplicateurs admin */
+.admin-boost-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.admin-boost-grid>div{padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.025)}
+.admin-boost-buttons{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.admin-boost-buttons button{min-width:48px}
+.admin-boost-card small{opacity:.75}
+@media(max-width:900px){.admin-boost-grid{grid-template-columns:1fr}}
+
+
+/* V19 — interface partie claire */
+.global-boost-banner{margin:10px auto 18px;max-width:1100px;padding:12px 16px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(120,20,20,.22);text-align:center;font-weight:700}
+.global-boost-banner strong{display:block;margin-bottom:4px}
+.v19-game{max-width:1200px;margin:0 auto;padding:20px}
+.game-v19-timer{min-width:190px;padding:12px 16px;border:1px solid rgba(255,255,255,.16);border-radius:14px;text-align:center;font-weight:800}
+.game-subtitle{opacity:.7;margin:4px 0 0}
+.cupid-choice,.witch-victim-box{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px;margin:12px 0;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.03)}
+.cupid-choice span{font-weight:800}
+@media(max-width:700px){.game-header{display:flex;flex-direction:column;gap:12px}.game-v19-timer{width:100%;box-sizing:border-box}.v19-game{padding:12px}}
+
+
+/* V20 — pendant une vraie partie, le menu principal disparaît totalement. */
+body.in-game #menuScreen > .top-bar,
+body.in-game #menuScreen > .announcement-box,
+body.in-game #menuScreen > .menu-grid,
+body.in-game #menuScreen > .global-boost-banner,
+body.in-game #menuScreen > .active-boosts { display:none !important; }
+body.in-game #menuScreen { padding:0; min-height:100vh; }
+body.in-game #gameLobby { display:block !important; padding:0; }
+body.in-game #gameLobby > h2,
+body.in-game #gameLobby > .lobby-actions,
+body.in-game #gameLobby > .join-room,
+body.in-game #gameLobby > #startGameButton,
+body.in-game #gameLobby > #startGameWithBotsButton,
+body.in-game #gameLobby > .ranked-toggle,
+body.in-game #gameLobby > #roomFriends { display:none !important; }
+body.in-game .v19-game { max-width:1180px; min-height:calc(100vh - 20px); margin:0 auto; border-radius:0; border-left:0; border-right:0; }
+.game-night-order{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0 20px}.game-night-order span{padding:8px 12px;border:1px solid #3b3b3b;border-radius:999px;background:#111;color:#777;font-size:12px}.game-night-order .active{color:#f0d39e;border-color:#6a4b2d;box-shadow:0 0 18px rgba(180,120,50,.15)}
+.game-instruction{font-size:17px;line-height:1.55;min-height:74px;display:flex;align-items:center;justify-content:center;text-align:center}
+.game-v19-timer{min-width:180px;padding:14px 18px;font-size:18px;font-weight:700}
+
+
+.admin-dashboard-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}.admin-stat{padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(10,12,25,.55);display:flex;flex-direction:column;gap:3px;text-align:center}.admin-stat b{font-size:24px}.admin-stat strong{font-size:24px}.admin-stat span{opacity:.72;font-size:13px}.admin-help{opacity:.78;margin-bottom:0}@media(max-width:800px){.admin-dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* V26 - contrôle de l'événement Halloween */
+.admin-halloween-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+.admin-halloween-card{border:1px solid rgba(255,145,0,.35);}
+
+/* V26 — monnaie Halloween */
+.candy-stat{white-space:nowrap}
+.halloween-shop{margin-top:22px;padding:20px;border:1px solid rgba(255,140,0,.35);border-radius:16px;background:rgba(40,15,0,.35)}
+.halloween-shop h2{margin-top:0}
+.halloween-candy-balance{font-size:1.15rem}
+.halloween-shop-card{border-color:rgba(255,140,0,.3)}
+.halloween-shop-closed{opacity:.8}
+
+.halloween-music-box{position:fixed;right:18px;bottom:18px;z-index:9999;backdrop-filter:blur(8px)}
+.halloween-music-box.hidden{display:none}
+
+/* Halloween : la monnaie et son emoji sont totalement invisibles hors événement. */
+.candy-stat.hidden { display: none !important; }
+.personal-event-badge{border-color:rgba(255,255,255,.3);}
+
+/* V26 Halloween visuel — fond fourni par le créateur */
+body.halloween-active::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.10),transparent 25%),radial-gradient(circle at 78% 70%,rgba(130,0,0,.14),transparent 35%);
+}
+
+/* Boîtes Loup-Garou Halloween animées */
+.halloween-boxes{margin:18px 0;padding:20px;border:1px solid rgba(255,145,0,.32);border-radius:20px;background:rgba(8,7,10,.68);box-shadow:0 0 35px rgba(255,90,0,.08)}
+.halloween-box-intro{text-align:center;margin-bottom:14px}.halloween-box-intro h3{margin-bottom:5px}.halloween-box-intro p{opacity:.72}
+.halloween-box-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:760px;margin:auto}
+.wolf-box{position:relative;min-height:150px;padding:16px;border-radius:18px;border:1px solid rgba(255,150,30,.4);background:linear-gradient(145deg,#261507,#100d0a 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;animation:halloweenBoxFloat 2.8s ease-in-out infinite;box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 20px rgba(255,100,0,.08)}
+.wolf-box::after{content:"";position:absolute;inset:-30%;background:radial-gradient(circle,rgba(255,140,0,.12),transparent 55%);animation:halloweenBoxGlow 2s ease-in-out infinite}
+.wolf-box-lid{font-size:48px;line-height:1;filter:drop-shadow(0 0 8px rgba(255,120,0,.4));animation:halloweenBoxShake 2.2s ease-in-out infinite;z-index:1}
+.wolf-box-body{font-size:30px;z-index:1}.wolf-box span{font-weight:800;font-size:13px;z-index:1}.wolf-box-delay{animation-delay:.35s}.wolf-box-delay2{animation-delay:.7s}.wolf-box-delay .wolf-box-lid{animation-delay:.35s}.wolf-box-delay2 .wolf-box-lid{animation-delay:.7s}
+@keyframes halloweenBoxFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes halloweenBoxShake{0%,72%,100%{transform:rotate(0)}76%{transform:rotate(-6deg)}80%{transform:rotate(6deg)}84%{transform:rotate(-4deg)}88%{transform:rotate(3deg)}}
+@keyframes halloweenBoxGlow{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:.8;transform:scale(1.08)}}
+
+
+/* Ouverture réelle des boîtes Halloween */
+.halloween-box-open{position:relative;z-index:2;margin-top:8px}.box-count{font-size:18px;color:#ffd37a;z-index:2}.halloween-box-drop-info{text-align:center;opacity:.78;margin-top:12px}
+.halloween-box-opening{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.86);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}.halloween-box-opening.show{opacity:1}.halloween-opening-card{width:min(92vw,430px);padding:34px 24px;text-align:center;border:1px solid rgba(255,145,0,.5);border-radius:24px;background:radial-gradient(circle at 50% 20%,rgba(255,110,0,.18),rgba(10,8,12,.98) 58%);box-shadow:0 0 70px rgba(255,100,0,.22)}.opening-box{width:150px;height:130px;margin:0 auto 22px;position:relative;filter:drop-shadow(0 0 22px rgba(255,130,0,.4));transform:scale(.9);transition:transform .3s}.opening-box.opening{animation:boxOpening .9s ease-in-out infinite}.opening-lid{position:absolute;top:4px;left:25px;font-size:72px;transform-origin:50% 100%;z-index:2}.opening-body{position:absolute;bottom:4px;left:42px;font-size:58px}.opening-box.opening .opening-lid{animation:lidOpen .8s ease-in-out infinite}.opening-box.opening .opening-body{animation:bodyGlow .8s ease-in-out infinite}.opening-sparkles{font-size:24px;letter-spacing:12px;color:#ffd37a;animation:sparklePulse .55s infinite alternate}.opening-reward{font-size:90px;animation:rewardPop .7s ease-out}.opening-reward-text{font-size:22px;font-weight:800;color:#ffd37a}@keyframes boxOpening{50%{transform:scale(1.08)}}@keyframes lidOpen{50%{transform:translateY(-28px) rotate(-12deg)}}@keyframes bodyGlow{50%{filter:drop-shadow(0 0 28px #ff9b28)}}@keyframes sparklePulse{from{opacity:.35;transform:scale(.9)}to{opacity:1;transform:scale(1.08)}}@keyframes rewardPop{0%{transform:scale(.2) rotate(-15deg);opacity:0}70%{transform:scale(1.15) rotate(4deg);opacity:1}100%{transform:scale(1)}}
+
+/* Gestion des codes cadeau */
+.promo-redeem-card{margin-top:22px;padding:20px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(8,8,12,.58)}
+.promo-redeem-card h3{margin-bottom:8px}.promo-redeem-row{display:flex;gap:10px;margin-top:12px}.promo-redeem-row input{flex:1;min-width:0}
+.admin-code-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.admin-promo-list{margin-top:14px}.admin-promo-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;margin:8px 0;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.025)}.admin-promo-row small{display:block;opacity:.7;margin-top:4px}
+@media(max-width:700px){.halloween-box-grid{grid-template-columns:1fr}.promo-redeem-row{flex-direction:column}.admin-code-grid{grid-template-columns:1fr}.admin-promo-row{flex-direction:column;align-items:stretch}}
+
+/* V26 — Maintenance administrateur */
+.maintenance-screen{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  min-height:100vh;
+  width:100vw;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(65,65,75,.18),transparent 38%),
+    linear-gradient(135deg,#050609,#101116 55%,#050609);
+  color:#fff;
+  text-align:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+.maintenance-screen.hidden{display:none !important}
+.maintenance-content{max-width:900px;width:100%;padding:40px 24px}
+.maintenance-icon{font-size:76px;filter:drop-shadow(0 0 20px rgba(255,255,255,.12));margin-bottom:10px}
+.maintenance-content h1{font-size:clamp(38px,7vw,84px);letter-spacing:.06em;margin:0 0 18px;font-weight:900}
+.maintenance-content p{font-size:20px;opacity:.78;margin:8px 0}
+.maintenance-timer{position:fixed;top:24px;right:28px;font-size:clamp(22px,3vw,38px);font-weight:900;padding:14px 20px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(0,0,0,.42);backdrop-filter:blur(10px);white-space:nowrap}
+.maintenance-small{font-size:15px !important;opacity:.5 !important;margin-top:28px !important}
+.admin-maintenance-card{border:1px solid rgba(255,190,80,.25)}
+.admin-maintenance-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.admin-maintenance-controls input{min-width:150px;flex:0 0 180px}
+@media(max-width:700px){.maintenance-timer{top:14px;right:14px;font-size:20px;padding:10px 12px}.maintenance-content{padding-top:100px}.maintenance-content h1{font-size:38px}.maintenance-content p{font-size:17px}.admin-maintenance-controls{flex-direction:column;align-items:stretch}.admin-maintenance-controls input{flex:auto;width:100%;box-sizing:border-box}}
+
+
+/* V26 commentaires du menu */
+.comment-compose{display:flex;flex-direction:column;gap:10px;margin:18px 0 24px;padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(8,10,14,.72);}
+.comment-compose textarea{width:100%;resize:vertical;min-height:90px;}
+.comments-list{display:flex;flex-direction:column;gap:10px;}
+.comment-card{margin-left:calc(var(--comment-depth,0) * 28px);padding:14px;border:1px solid rgba(255,255,255,.11);border-radius:15px;background:rgba(10,12,16,.78);}
+.comment-head{display:flex;justify-content:space-between;gap:12px;align-items:center;}
+.comment-head small{opacity:.65;}
+.comment-text{white-space:pre-wrap;margin:10px 0;}
+.comment-actions{display:flex;gap:8px;flex-wrap:wrap;}
+@media(max-width:600px){.comment-card{margin-left:calc(var(--comment-depth,0) * 12px)}.comment-head{align-items:flex-start;flex-direction:column;gap:4px}}
+
+
+/* V0.31.1 — codes, mises à jour et défi Halloween */
+.update-card,.admin-update-row,.halloween-challenge-card{background:rgba(20,20,30,.82);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px;margin:10px 0}.update-card h3{margin:0 0 10px}.update-card h3 small{float:right;opacity:.7;font-size:.8em}.preserve-lines{white-space:pre-wrap;text-align:left}.admin-update-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-update-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.challenge-gauge{height:32px;background:#15151d;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.15);margin:20px 0}.challenge-gauge-fill{height:100%;width:0%;background:linear-gradient(90deg,#7b1fa2,#ff7a00,#ffd54f);transition:width .4s ease}.halloween-challenge-card{text-align:center}.account-identifier{white-space:nowrap}
+@media(max-width:700px){.admin-update-grid{grid-template-columns:1fr}.admin-update-row{flex-direction:column}}
+
+.auth-help-row{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:8px}
+.auth-help-messages{display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto;margin:10px 0}
+
+
+/* V0.31.1 — navigation et administration réduite */
+.admin-create-account-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0;}
+.admin-account-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.reduced-admin .full-admin-only{display:none!important;}
+@media (max-width:700px){.admin-account-actions button{width:100%;}.admin-create-account-grid{grid-template-columns:1fr;}}
