@@ -1,1 +1,41 @@
-
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d1b">
+<meta name="description" content="Découvre Loup-Garou : Pour une Nuit, le jeu de bluff, de rôles secrets et de déduction.">
+<title>Loup-Garou : Pour une Nuit — Site officiel</title>
+<link rel="stylesheet" href="/site/style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#accueil"><span class="brand-mark">🐺</span><span>LOUP-GAROU<small>POUR UNE NUIT</small></span></a>
+  <nav><a href="#jeu">Le jeu</a><a href="#fonctionnalites">Fonctionnalités</a><a href="#boutique" id="navShop" class="hidden">Boutique</a><a href="#recompenses" id="navRewards" class="hidden">Récompenses</a></nav>
+  <div class="nav-actions"><span id="navUser" class="muted"></span><button id="loginOpen" class="button button-ghost">Se connecter</button><button id="logout" class="button button-ghost hidden">Déconnexion</button><a class="button button-primary" href="/" target="_blank" rel="noopener">Jouer maintenant ↗</a></div>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div class="hero-copy"><div class="eyebrow"><span class="dot"></span> LE VILLAGE N'EST JAMAIS CE QU'IL PARAÎT</div>
+    <h1>La nuit tombe.<br><em>Qui croire ?</em></h1>
+    <p class="lead">Entre dans un village où chaque rôle cache un secret. Observe, bluffe, déduis… et découvre qui joue double jeu.</p>
+    <div class="hero-actions"><a class="button button-primary button-large" href="/" target="_blank" rel="noopener">⚔ Jouer gratuitement</a><button class="button button-ghost button-large" id="learnMore">Découvrir le jeu ↓</button></div>
+    <div class="hero-stats"><div><b>🎭 Rôles secrets</b><small>Chaque partie est différente</small></div><div><b>🌕 Bluff & déduction</b><small>Fais confiance à ton instinct</small></div><div><b>🪙 Boutique virtuelle</b><small>Utilise tes pièces du jeu</small></div></div>
+  </div>
+  <div class="hero-art"><div class="moon"></div><div class="art-glow"></div><div class="wolf-emoji">🐺</div><div class="floating-card card-top">🌕 <span>La nuit est tombée…</span></div><div class="floating-card card-bottom">🎭 <span>Ton rôle est secret</span></div><div class="art-caption">UN VILLAGE · DES SECRETS · UNE NUIT</div></div>
+</section>
+<section class="intro section" id="jeu"><div class="section-kicker">BIENVENUE AU VILLAGE</div><h2>Un jeu de déduction<br><em>où personne n'est innocent.</em></h2><p class="section-text">Loup-Garou : Pour une Nuit est un jeu social de rôles cachés. Les joueurs découvrent leur rôle, échangent leurs soupçons et tentent de comprendre ce qui s'est passé avant que le village ne prenne sa décision.</p>
+<div class="feature-grid"><article class="feature"><div class="feature-icon">🎭</div><h3>Des rôles à découvrir</h3><p>Chaque personnage apporte ses propres possibilités et change la façon de jouer.</p></article><article class="feature"><div class="feature-icon">🕵️</div><h3>Bluffe et déduis</h3><p>Écoute les autres, repère les incohérences et défends ta théorie.</p></article><article class="feature"><div class="feature-icon">🌙</div><h3>Des parties imprévisibles</h3><p>Les identités secrètes et les discussions rendent chaque partie unique.</p></article></div></section>
+<section class="wide-banner"><div><div class="section-kicker">TON AVENTURE CONTINUE</div><h2>Rejoins le village.</h2><p>Connecte-toi avec ton compte existant pour retrouver tes pièces et découvrir les articles disponibles.</p><a class="button button-primary" href="/" target="_blank" rel="noopener">Entrer dans le jeu ↗</a></div><div class="banner-moon">🌕</div></section>
+<section class="section" id="fonctionnalites"><div class="section-kicker">TON ESPACE JOUEUR</div><h2>Tout ton univers,<br><em>au même endroit.</em></h2><div class="feature-grid"><article class="feature"><div class="feature-icon">🪙</div><h3>Une boutique en pièces</h3><p>Consulte ton solde et échange tes pièces virtuelles contre des articles disponibles.</p></article><article class="feature"><div class="feature-icon">🎁</div><h3>Récompenses mensuelles</h3><p>Tente ta chance une fois par mois et récupère un code cadeau à utiliser dans le jeu.</p></article><article class="feature"><div class="feature-icon">🔐</div><h3>Ton compte existant</h3><p>Utilise le pseudo et le mot de passe de ton compte Loup-Garou, sans créer un nouveau compte.</p></article></div></section>
+<section class="section account-section hidden" id="account"><div class="account-heading"><div><div class="section-kicker">ESPACE PERSONNEL</div><h2>Salut, <em id="welcomeName">Villageois</em></h2></div><div class="balance"><small>TON SOLDE</small><b>🪙 <span id="coins">—</span></b></div></div>
+<div class="tabs"><button class="tab active" data-tab="boutique">🛒 Boutique</button><button class="tab" data-tab="recompenses">🎁 Récompenses</button><button class="tab hidden" id="adminTab" data-tab="admin">👑 Admin</button></div>
+<div class="tab-panel" id="boutique"><div class="panel-head"><div><h3>La boutique du village</h3><p>Les achats utilisent les pièces de ton compte de jeu.</p></div><button class="button button-ghost" id="refreshShop">↻ Actualiser</button></div><div class="shop-grid" id="shopGrid"><p class="muted">Connecte-toi pour afficher la boutique.</p></div></div>
+<div class="tab-panel hidden" id="recompenses"><div class="reward-box"><div class="reward-symbol">🎁</div><div><div class="section-kicker">CADEAU DU MOIS</div><h3>Une surprise t'attend</h3><p id="rewardDescription">Une participation par compte et par mois. La récompense est tirée au hasard parmi celles proposées.</p><button id="generateReward" class="button button-primary">Générer mon code</button><div id="rewardResult" class="reward-result hidden"></div></div></div></div>
+<div class="tab-panel hidden" id="admin"><div class="panel-head"><div><h3>Administration de la boutique</h3><p>Réservé au compte créateur.</p></div></div><form id="itemForm" class="admin-form"><label>Nom de l'article<input name="name" required maxlength="60" placeholder="Ex. Titre : Gardien de la Lune"></label><label>Description<input name="description" required maxlength="180" placeholder="Description courte"></label><label>Emoji<input name="icon" maxlength="8" value="🎭"></label><label>Prix en pièces<input name="price" type="number" min="1" max="100000000" required></label><label>Type de récompense<select name="rewardType"><option value="title">Titre</option><option value="class">Classe du jeu</option><option value="xp">XP</option><option value="trophies">Trophées</option></select></label><label>Valeur (titre / ID de classe / quantité)<input name="rewardValue" required placeholder="Ex. Gardien de la Lune"></label><button class="button button-primary" type="submit">Ajouter l'article</button><p id="adminMessage" class="form-message"></p></form><h3>Articles existants</h3><div id="adminItems"></div><hr><h3>Récompenses mensuelles</h3><p class="muted">Les probabilités sont configurées côté serveur dans <code>websiteRewardPool</code>. Les codes générés sont compatibles avec le système de codes du jeu.</p></div>
+</section>
+<section class="section login-section hidden" id="loginPanel"><div class="login-card"><button class="close-button" id="loginClose" aria-label="Fermer">×</button><div class="brand-mark big">🐺</div><div class="section-kicker">HEUREUX DE TE REVOIR</div><h2>Connexion au village</h2><p>Utilise les identifiants de ton compte de jeu existant.</p><form id="loginForm"><label>Pseudo<input id="pseudo" name="pseudo" autocomplete="username" required maxlength="20"></label><label>Mot de passe<input id="password" name="password" type="password" autocomplete="current-password" required></label><button class="button button-primary button-large full" type="submit">Se connecter</button><p id="loginMessage" class="form-message"></p></form></div></section>
+</main>
+<footer><a class="brand" href="#accueil"><span class="brand-mark">🐺</span><span>LOUP-GAROU<small>POUR UNE NUIT</small></span></a><p>Un jeu de bluff, de secrets et de déduction. Fait pour le village. 🐺</p><a href="/" target="_blank" rel="noopener">Accéder au jeu ↗</a><small>© <span id="year"></span> Loup-Garou : Pour une Nuit</small></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="/site/app.js"></script>
+</body></html>
