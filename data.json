@@ -1,0 +1,12 @@
+{
+  "users": [],
+  "rooms": [],
+  "friendships": [],
+  "friendRequests": [],
+  "messages": [],
+  "notifications": [],
+  "announcements": {
+    "text": "Bienvenue dans Loup-Garou V7 🐺"
+  },
+  "bloodMoonProgress": {}
+}

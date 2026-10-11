@@ -1,0 +1,15 @@
+{
+  "name": "loup-garou-v7",
+  "version": "0.32.0",
+  "description": "Loup-Garou multijoueur avec site officiel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
+    "bcryptjs": "^2.4.3",
+    "pg": "^8.16.3"
+  }
+}
