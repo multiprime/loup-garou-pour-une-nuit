@@ -26,3 +26,10 @@ Le site est servi par le même serveur Express que le jeu : pas besoin d'un deux
 - Le code de connexion du jeu d'origine n'utilise pas de session persistante pour le site : ce site ajoute un jeton signé côté serveur, avec expiration. Il n'enregistre jamais les mots de passe dans le navigateur.
 - Le site n'a pas de paiement en euros : seulement les pièces virtuelles, comme demandé.
 - Les images utilisées sont celles du ZIP fourni. Les autres éléments visuels sont du CSS/emoji; aucune image extérieure n'est téléchargée.
+
+## Version 2 — changements d'interface
+- Moins de liens pour lancer le jeu : les principaux boutons pointent vers `/jeu`.
+- Section de téléchargement Android utilisant le fichier `site/downloads/loup-garou.apk` fourni.
+- Solde de pièces visible en haut à droite après connexion.
+- Panneau `creator2026` : ajout/suppression d'articles et modification du prix.
+- Le code APK a été inclus tel que fourni par l'utilisateur. Vérifie qu'il s'agit bien de la version que tu souhaites distribuer avant publication.

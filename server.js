@@ -4357,6 +4357,15 @@ app.post("/api/site/admin/items",siteVerifyToken,siteRequireAdmin,async(req,res)
   siteItems().push({id,name,description,icon,price,rewardType:type,rewardValue:value,active:true,createdAt:Date.now()});
   await saveDatabase();res.json({message:"Article ajouté.",items:siteItems()});
 });
+app.put("/api/site/admin/items/:id",siteVerifyToken,siteRequireAdmin,async(req,res)=>{
+  const item=siteItems().find(i=>i.id===String(req.params.id));
+  if(!item)return res.status(404).json({message:"Article introuvable."});
+  const price=Number(req.body?.price);
+  if(!Number.isSafeInteger(price)||price<1||price>100000000)return res.status(400).json({message:"Prix invalide."});
+  item.price=price;
+  await saveDatabase();
+  res.json({message:"Prix modifié.",item:{id:item.id,price:item.price}});
+});
 app.delete("/api/site/admin/items/:id",siteVerifyToken,siteRequireAdmin,async(req,res)=>{
   const before=siteItems().length;db.websiteShopItems=siteItems().filter(i=>i.id!==String(req.params.id));
   if(db.websiteShopItems.length===before)return res.status(404).json({message:"Article introuvable."});
